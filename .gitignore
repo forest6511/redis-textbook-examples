@@ -1,0 +1,33 @@
+# --- Redis / runtime artifacts ---
+*.rdb
+*.aof
+appendonly.aof/
+dump.rdb
+*.log
+
+# --- secrets / env ---
+.env
+.env.*
+*.key
+*.secret
+
+# --- OS / editor ---
+.DS_Store
+.idea/
+.vscode/
+
+# --- dependencies / build ---
+node_modules/
+__pycache__/
+*.pyc
+vendor/
+bin/
+
+# --- .claude: グローバル ~/.gitignore_global が .claude/ を除外するため、
+#     ここで否定パターンを置いて Skills/Hooks/Subagents 設定を追跡可能にする
+#     ([[feedback-sample-repo-dotclaude-ignored]] 事故対策) ---
+!.claude/
+!.claude/**
+.claude/cache/
+.claude/sessions/
+.claude/.env
