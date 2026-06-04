@@ -1,0 +1,13 @@
+services:
+  redis:
+    image: redis:8
+    container_name: redis-textbook-ch02
+    ports:
+      - "6379:6379"
+    # 開発用の最小設定。本番では requirepass を必ず設定する
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:

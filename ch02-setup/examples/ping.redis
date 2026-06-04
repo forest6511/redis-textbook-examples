@@ -1,0 +1,6 @@
+PING
+SET greeting "hello redis"
+GET greeting
+TYPE greeting
+DEL greeting
+EXISTS greeting
