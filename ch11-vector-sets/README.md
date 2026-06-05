@@ -1,6 +1,6 @@
 # ch11-vector-sets — Redis 8の新機能とVector Sets
 
-『Redis の教科書』第章のサンプルです。本書の redis-cli コマンドを抜粋しています。
+『Redis の教科書』第11章のサンプルです。本書の redis-cli コマンドを抜粋しています。
 
 ## 実行
 

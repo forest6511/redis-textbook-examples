@@ -1,6 +1,6 @@
 # ch06-ranking-pubsub — ランキング・カウンタ・Pub/Sub
 
-『Redis の教科書』第章のサンプルです。本書の redis-cli コマンドを抜粋しています。
+『Redis の教科書』第6章のサンプルです。本書の redis-cli コマンドを抜粋しています。
 
 ## 実行
 
