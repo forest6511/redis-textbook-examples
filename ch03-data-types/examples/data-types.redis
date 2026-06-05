@@ -1,0 +1,37 @@
+# 基本データ型と主要コマンド — 本書 chapters/03_data_types の redis-cli コマンド抜粋
+# 実行: docker compose up -d && redis-cli < examples/data-types.redis
+
+SET counter 100
+INCR counter
+INCRBY counter 10
+SETEX token 60 "abc123"
+TTL token
+HSET user:1 name "alice" age 30 city "Tokyo"
+HGET user:1 name
+HGETALL user:1
+HSET session:1 token "xyz" csrf "abc"
+HEXPIRE session:1 60 FIELDS 1 token
+HTTL session:1 FIELDS 1 token
+RPUSH tasks "task1" "task2" "task3"
+LRANGE tasks 0 -1
+LPOP tasks
+SADD tags:1 "redis" "cache" "redis"
+SMEMBERS tags:1
+SISMEMBER tags:1 "redis"
+SADD user:1:likes "apple" "banana" "cherry"
+SADD user:2:likes "banana" "cherry" "grape"
+SINTER user:1:likes user:2:likes
+ZADD ranking 100 "alice" 80 "bob" 120 "carol"
+ZRANGE ranking 0 -1 WITHSCORES
+ZREVRANGE ranking 0 2 WITHSCORES
+SETBIT login:2026-06-05 100 1
+GETBIT login:2026-06-05 100
+BITCOUNT login:2026-06-05
+PFADD visitors "user1" "user2" "user3"
+PFCOUNT visitors
+GEOADD shops 139.70 35.69 "shopA" 139.76 35.68 "shopB"
+GEOSEARCH shops FROMMEMBER "shopA" BYRADIUS 10 km ASC
+MULTI
+INCR visits
+INCR visits
+EXEC

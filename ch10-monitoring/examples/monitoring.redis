@@ -1,0 +1,25 @@
+# 監視・障害対応・セキュリティ — 本書 chapters/10_monitoring_security の redis-cli コマンド抜粋
+# 実行: docker compose up -d && redis-cli < examples/monitoring.redis
+
+INFO server
+INFO clients
+INFO stats
+CONFIG SET slowlog-log-slower-than 0
+GET k
+SLOWLOG GET 2
+CONFIG SET latency-monitor-threshold 100
+LATENCY LATEST
+ACL WHOAMI
+ACL LIST
+CONFIG SET requirepass secret123
+GET product:1
+AUTH secret123
+GET product:1
+ACL SETUSER readonly on >pass123 ~cache:* +@read
+ACL GETUSER readonly
+ACL DRYRUN readonly SET cache:1 v
+ACL DRYRUN readonly GET cache:1
+ACL CAT dangerous
+ACL SETUSER app on >apppass ~app:* +@all -@dangerous
+CONFIG GET bind
+CONFIG GET protected-mode

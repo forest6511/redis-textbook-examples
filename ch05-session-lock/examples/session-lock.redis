@@ -1,0 +1,13 @@
+# セッション・レート制限・分散ロック — 本書 chapters/05_session_ratelimit_lock の redis-cli コマンド抜粋
+# 実行: docker compose up -d && redis-cli < examples/session-lock.redis
+
+INCR rate:user42:202606051200
+EXPIRE rate:user42:202606051200 60
+INCR rate:user42:202606051200
+INCREX rate:user42 BYINT 1 UBOUND 100 EX 60 ENX
+SET lock:batch token-abc123 NX EX 30
+SET lock:batch token-xyz789 NX EX 30
+DELEX lock:batch IFEQ token-abc123
+INCR fence:batch
+SET payment:order-7788 done NX EX 86400
+SET payment:order-7788 done NX EX 86400

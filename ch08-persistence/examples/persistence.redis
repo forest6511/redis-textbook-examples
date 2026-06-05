@@ -1,0 +1,6 @@
+# 永続化とメモリ管理 — 本書 chapters/08_persistence_memory の redis-cli コマンド抜粋
+# 実行: docker compose up -d && redis-cli < examples/persistence.redis
+
+BGSAVE
+MEMORY USAGE session:abc123
+INFO memory

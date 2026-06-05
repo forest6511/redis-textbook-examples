@@ -15,11 +15,22 @@
 章ごとに `chNN-<topic>/` ディレクトリを用意します。各ディレクトリの `README.md` に起動方法と実行手順を記載します。
 
 ```
-ch02-setup/        セットアップと疎通確認
-ch03-data-types/   基本データ型と主要コマンド
-ch04-cache/        キャッシュ設計
-...
+ch02-setup/             セットアップと疎通確認
+ch03-data-types/        基本データ型と主要コマンド
+ch04-cache/             キャッシュ設計（cache-aside の Python 例つき）
+ch05-session-lock/      セッション・レート制限・分散ロック（Lua つき）
+ch06-ranking-pubsub/    ランキング・カウンタ・Pub/Sub
+ch07-streams/           キューと Streams
+ch08-persistence/       永続化とメモリ管理
+ch09-ha-scale/          高可用性とスケール（replication / sentinel / cluster）
+ch10-monitoring/        監視・障害対応・セキュリティ（exporter + Prometheus）
+ch11-vector-sets/       Redis 8 の新機能と Vector Sets
+ch12-managed/           マネージド Redis（移行スクリプト）
+appendix-a-commands/    主要コマンド早見表（リファレンス）
+appendix-b-comparison/  Redis / Valkey / Dragonfly / Memcached 比較
 ```
+
+第1章（判断章）は実行するコードがないためディレクトリはありません。
 
 ## 起動の基本
 

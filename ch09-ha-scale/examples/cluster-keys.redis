@@ -1,0 +1,9 @@
+# Redis Cluster でのキー配置とハッシュタグの確認
+# 実行: redis-cli -c -p 7001 < examples/cluster-keys.redis
+CLUSTER INFO
+SET foo bar
+MSET key1 a key2 b
+MSET "{cart:42}:item1" a "{cart:42}:item2" b
+CLUSTER KEYSLOT "{user:1000}:profile"
+CLUSTER KEYSLOT "{user:1000}:orders"
+CLUSTER NODES

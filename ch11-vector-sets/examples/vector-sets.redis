@@ -1,0 +1,20 @@
+# Redis 8の新機能とVector Sets — 本書 chapters/11_redis8_vector_sets の redis-cli コマンド抜粋
+# 実行: docker compose up -d && redis-cli < examples/vector-sets.redis
+
+MODULE LIST
+JSON.SET user:1 $ '{"name":"alice","age":30}'
+JSON.GET user:1 $.name
+VADD points VALUES 2 1.0 1.0 pt:A
+VADD points VALUES 2 -1.0 -1.0 pt:B
+VADD points VALUES 2 1.0 0 pt:E
+TYPE points
+VCARD points
+VDIM points
+VSIM points VALUES 2 1.0 1.0 WITHSCORES COUNT 3
+VEMB points pt:A
+VADD docs VALUES 3 0.1 0.2 0.3 doc:1
+VSETATTR docs doc:1 '{"title":"Redis入門","year":2026}'
+VGETATTR docs doc:1
+VADD docs VALUES 3 0.1 0.2 0.31 doc:2
+VSETATTR docs doc:2 '{"title":"Go入門","year":2025}'
+VSIM docs VALUES 3 0.1 0.2 0.3 WITHSCORES COUNT 5 FILTER '.year >= 2026'

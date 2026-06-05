@@ -1,0 +1,14 @@
+services:
+  redis-master:
+    image: redis:8-alpine  # Redis 8.8.0
+    command: redis-server --min-replicas-to-write 1 --min-replicas-max-lag 10
+    ports:
+      - "6379:6379"
+  redis-replica:
+    image: redis:8-alpine
+    # マスターのデータを複製する。レプリカは既定で read-only
+    command: redis-server --replicaof redis-master 6379
+    ports:
+      - "6380:6379"
+    depends_on:
+      - redis-master

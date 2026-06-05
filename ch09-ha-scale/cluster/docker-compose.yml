@@ -1,0 +1,27 @@
+services:
+  # Redis Cluster は最小 3 マスター + 3 レプリカ = 6 ノードで構成する。
+  # 16,384 のハッシュスロットを CRC16 で 3 マスターに分散する。
+  node1:
+    image: redis:8-alpine  # Redis 8.8.0
+    command: redis-server --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --port 7001
+    ports: ["7001:7001", "17001:17001"]
+  node2:
+    image: redis:8-alpine
+    command: redis-server --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --port 7002
+    ports: ["7002:7002", "17002:17002"]
+  node3:
+    image: redis:8-alpine
+    command: redis-server --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --port 7003
+    ports: ["7003:7003", "17003:17003"]
+  node4:
+    image: redis:8-alpine
+    command: redis-server --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --port 7004
+    ports: ["7004:7004", "17004:17004"]
+  node5:
+    image: redis:8-alpine
+    command: redis-server --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --port 7005
+    ports: ["7005:7005", "17005:17005"]
+  node6:
+    image: redis:8-alpine
+    command: redis-server --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000 --port 7006
+    ports: ["7006:7006", "17006:17006"]

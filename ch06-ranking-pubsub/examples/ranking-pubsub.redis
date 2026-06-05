@@ -1,0 +1,21 @@
+# ランキング・カウンタ・Pub/Sub — 本書 chapters/06_ranking_counter_pubsub の redis-cli コマンド抜粋
+# 実行: docker compose up -d && redis-cli < examples/ranking-pubsub.redis
+
+ZADD ranking 100 alice
+ZADD ranking 80 bob
+ZINCRBY ranking 50 bob
+ZREVRANGE ranking 0 2 WITHSCORES
+ZREVRANK ranking alice
+ZUNIONSTORE rank:w:2026W23 2 rank:d:20260601 rank:d:20260602
+ZREVRANGE rank:w:2026W23 0 0 WITHSCORES
+INCR likes:post:42
+INCR likes:post:42
+INCRBY likes:post:42 10
+PFADD visitors:20260605 user1 user2 user3
+PFADD visitors:20260605 user1
+PFCOUNT visitors:20260605
+SETBIT active:20260605 1001 1
+SETBIT active:20260605 2050 1
+BITCOUNT active:20260605
+SUBSCRIBE news
+PUBLISH news "hello"

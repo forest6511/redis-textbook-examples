@@ -1,0 +1,20 @@
+# キューとStreams — 本書 chapters/07_queue_streams の redis-cli コマンド抜粋
+# 実行: docker compose up -d && redis-cli < examples/streams.redis
+
+LPUSH jobs "send-mail:42"
+LPUSH jobs "resize-image:99"
+RPOP jobs
+BRPOP jobs 5
+BLMOVE jobs jobs:processing RIGHT LEFT 5
+LREM jobs:processing 1 "send-mail:42"
+XADD mail-stream * to alice@example.com subject hello
+XADD mail-stream * to bob@example.com subject hi
+XGROUP CREATE mail-stream workers 0
+XREADGROUP GROUP workers worker-1 COUNT 1 STREAMS mail-stream >
+XACK mail-stream workers 1733385600000-0
+XPENDING mail-stream workers
+XAUTOCLAIM mail-stream workers worker-2 60000 0-0 COUNT 10
+XNACK mail-stream workers FAIL IDS 1 1733385600001-0
+XADD mail-stream MAXLEN ~ 1000 * to carol@example.com subject hey
+ZADD delayed 1733385900 "send-mail:42"
+ZRANGEBYSCORE delayed 0 1733385900

@@ -1,0 +1,7 @@
+# キャッシュ設計 — 本書 chapters/04_cache_design の redis-cli コマンド抜粋
+# 実行: docker compose up -d && redis-cli < examples/cache.redis
+
+SET lock:product:42 1 NX EX 5
+SET lock:product:42 1 NX EX 5
+DEL cache:product:42
+INFO stats

@@ -1,0 +1,7 @@
+# レプリケーションの確認（replication/docker-compose.yml 起動後）
+# 実行: redis-cli < examples/replication.redis
+INFO replication
+SET user:1 "alice"
+SET user:2 "bob"
+SET order:99 "pending"
+WAIT 2 1000
